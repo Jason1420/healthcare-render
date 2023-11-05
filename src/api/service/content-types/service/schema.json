@@ -38,6 +38,12 @@
         "preset": "rich"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "register_forms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::register-form.register-form",
+      "mappedBy": "service"
     }
   }
 }

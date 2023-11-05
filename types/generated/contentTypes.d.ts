@@ -677,6 +677,40 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiConsultFormConsultForm extends Schema.CollectionType {
+  collectionName: 'consult_forms';
+  info: {
+    singularName: 'consult-form';
+    pluralName: 'consult-forms';
+    displayName: 'ConsultForm';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullName: Attribute.String;
+    phone: Attribute.String;
+    email: Attribute.String;
+    address: Attribute.Enumeration<['hcm', 'hanoi', 'khac']>;
+    note: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::consult-form.consult-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::consult-form.consult-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNewNew extends Schema.CollectionType {
   collectionName: 'news';
   info: {
@@ -712,6 +746,46 @@ export interface ApiNewNew extends Schema.CollectionType {
   };
 }
 
+export interface ApiRegisterFormRegisterForm extends Schema.CollectionType {
+  collectionName: 'register_forms';
+  info: {
+    singularName: 'register-form';
+    pluralName: 'register-forms';
+    displayName: 'registerForm';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullName: Attribute.String;
+    phone: Attribute.String;
+    email: Attribute.String;
+    service: Attribute.Relation<
+      'api::register-form.register-form',
+      'manyToOne',
+      'api::service.service'
+    >;
+    note: Attribute.Text;
+    address: Attribute.Enumeration<['hcm', 'hanoi', 'khac']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::register-form.register-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::register-form.register-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Schema.CollectionType {
   collectionName: 'services';
   info: {
@@ -736,6 +810,11 @@ export interface ApiServiceService extends Schema.CollectionType {
           preset: 'rich';
         }
       >;
+    register_forms: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::register-form.register-form'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -770,7 +849,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::consult-form.consult-form': ApiConsultFormConsultForm;
       'api::new.new': ApiNewNew;
+      'api::register-form.register-form': ApiRegisterFormRegisterForm;
       'api::service.service': ApiServiceService;
     }
   }
