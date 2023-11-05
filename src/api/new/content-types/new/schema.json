@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news",
+  "info": {
+    "singularName": "new",
+    "pluralName": "news",
+    "displayName": "News"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "detail": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "createAt": {
+      "type": "datetime"
+    }
+  }
+}

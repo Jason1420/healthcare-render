@@ -362,12 +362,47 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiNewNew extends Schema.CollectionType {
+  collectionName: 'news';
+  info: {
+    singularName: 'new';
+    pluralName: 'news';
+    displayName: 'News';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    desc: Attribute.Text;
+    detail: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
+    slug: Attribute.UID<'api::new.new', 'title'> & Attribute.Required;
+    thumbnail: Attribute.Media;
+    createAt: Attribute.DateTime;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::new.new', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::new.new', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Schema.CollectionType {
   collectionName: 'services';
   info: {
     singularName: 'service';
     pluralName: 'services';
     displayName: 'Service';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -377,6 +412,14 @@ export interface ApiServiceService extends Schema.CollectionType {
     desc: Attribute.Text;
     thumbnail: Attribute.Media;
     slug: Attribute.UID<'api::service.service', 'title'> & Attribute.Required;
+    detail: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'light';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -720,6 +763,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::new.new': ApiNewNew;
       'api::service.service': ApiServiceService;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

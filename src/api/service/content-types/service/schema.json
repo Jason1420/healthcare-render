@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service"
+    "displayName": "Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,16 +19,25 @@
       "type": "text"
     },
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "slug": {
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "detail": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "light"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
