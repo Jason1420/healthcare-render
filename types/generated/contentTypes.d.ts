@@ -721,7 +721,7 @@ export interface ApiServiceService extends Schema.CollectionType {
     desc: Attribute.Text;
     thumbnail: Attribute.Media;
     slug: Attribute.UID<'api::service.service', 'title'> & Attribute.Required;
-    detail: Attribute.Blocks;
+    detail: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -32,7 +32,7 @@
       "required": true
     },
     "detail": {
-      "type": "blocks"
+      "type": "richtext"
     }
   }
 }
