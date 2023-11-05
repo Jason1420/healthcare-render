@@ -36,6 +36,14 @@
     },
     "detail": {
       "type": "blocks"
+    },
+    "detail2": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
