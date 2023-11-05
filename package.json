@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.0.4",
+    "@ckeditor/ckeditor5-alignment": "^40.0.0",
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
     "@strapi/provider-upload-cloudinary": "^4.15.0",
