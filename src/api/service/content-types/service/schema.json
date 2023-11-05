@@ -30,13 +30,6 @@
       "type": "uid",
       "targetField": "title",
       "required": true
-    },
-    "detail": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

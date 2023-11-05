@@ -33,13 +33,6 @@
     },
     "createAt": {
       "type": "datetime"
-    },
-    "detail": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
