@@ -631,7 +631,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -660,6 +659,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    fullName: Attribute.String;
+    phone: Attribute.String;
+    address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -724,6 +726,7 @@ export interface ApiIntroductionIntroduction extends Schema.CollectionType {
   };
   attributes: {
     template: Attribute.RichText &
+      Attribute.Required &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {
@@ -762,12 +765,12 @@ export interface ApiNewNew extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    desc: Attribute.Text;
+    title: Attribute.String & Attribute.Required;
+    desc: Attribute.Text & Attribute.Required;
     slug: Attribute.UID<'api::new.new', 'title'> & Attribute.Required;
-    thumbnail: Attribute.Media;
-    createAt: Attribute.DateTime;
+    thumbnail: Attribute.Media & Attribute.Required;
     detail: Attribute.RichText &
+      Attribute.Required &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {
@@ -837,11 +840,12 @@ export interface ApiServiceService extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    desc: Attribute.Text;
+    title: Attribute.String & Attribute.Required;
+    desc: Attribute.Text & Attribute.Required;
     thumbnail: Attribute.Media;
     slug: Attribute.UID<'api::service.service', 'title'> & Attribute.Required;
     detail: Attribute.RichText &
+      Attribute.Required &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {

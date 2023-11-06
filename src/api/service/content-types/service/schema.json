@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "desc": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "thumbnail": {
       "type": "media",
@@ -37,7 +39,8 @@
         "output": "HTML",
         "preset": "rich"
       },
-      "customField": "plugin::ckeditor.CKEditor"
+      "customField": "plugin::ckeditor.CKEditor",
+      "required": true
     },
     "register_forms": {
       "type": "relation",
