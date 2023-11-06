@@ -711,6 +711,45 @@ export interface ApiConsultFormConsultForm extends Schema.CollectionType {
   };
 }
 
+export interface ApiIntroductionIntroduction extends Schema.CollectionType {
+  collectionName: 'introductions';
+  info: {
+    singularName: 'introduction';
+    pluralName: 'introductions';
+    displayName: 'Introduction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    template: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
+    active: Attribute.Boolean & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::introduction.introduction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::introduction.introduction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNewNew extends Schema.CollectionType {
   collectionName: 'news';
   info: {
@@ -850,6 +889,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::consult-form.consult-form': ApiConsultFormConsultForm;
+      'api::introduction.introduction': ApiIntroductionIntroduction;
       'api::new.new': ApiNewNew;
       'api::register-form.register-form': ApiRegisterFormRegisterForm;
       'api::service.service': ApiServiceService;
